@@ -26,6 +26,19 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 - "Run the tests and make sure they pass" - step
 - "Commit" - step
 
+## TDD is Structural, Not Optional
+
+Every task that produces code MUST follow the red-green-refactor pattern in its steps:
+1. Write the failing test (RED)
+2. Run it, verify it fails (VERIFY RED)
+3. Write minimal implementation (GREEN)
+4. Run it, verify it passes (VERIFY GREEN)
+5. Commit
+
+A plan with implementation steps that lack preceding test steps is an invalid plan. Go back and add them.
+
+**Reference:** superpowers:test-driven-development defines the full methodology. Plans must encode it structurally.
+
 ## Plan Document Header
 
 **Every plan MUST start with this header:**
@@ -46,7 +59,7 @@ Assume they are a skilled developer, but know almost nothing about our toolset o
 
 ## Task Structure
 
-````markdown
+```markdown
 ### Task N: [Component Name]
 
 **Files:**
@@ -85,7 +98,7 @@ Expected: PASS
 git add tests/path/test.py src/path/file.py
 git commit -m "feat: add specific feature"
 ```
-````
+```
 
 ## Remember
 - Exact file paths always

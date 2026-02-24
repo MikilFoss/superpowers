@@ -18,8 +18,9 @@ Load plan, review critically, execute tasks in batches, report for review betwee
 ### Step 1: Load and Review Plan
 1. Read plan file
 2. Review critically - identify any questions or concerns about the plan
-3. If concerns: Raise them with your human partner before starting
-4. If no concerns: Create TodoWrite and proceed
+3. **Verify TDD structure:** Every code-producing task must have test-first steps (write failing test, verify fail, implement, verify pass). If any task has implementation steps without preceding test steps, raise this as a concern before starting. A plan missing TDD steps is incomplete.
+4. If concerns: Raise them with your human partner before starting
+5. If no concerns: Create TodoWrite and proceed
 
 ### Step 2: Execute Batch
 **Default: First 3 tasks**
@@ -69,8 +70,10 @@ After all tasks complete and verified:
 
 ## Remember
 - Review plan critically first
+- **Reject plans missing TDD steps** - flag to human partner before executing
 - Follow plan steps exactly
 - Don't skip verifications
+- Follow TDD red-green cycle per superpowers:test-driven-development
 - Reference skills when plan says to
 - Between batches: just report and wait
 - Stop when blocked, don't guess

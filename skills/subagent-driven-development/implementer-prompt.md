@@ -29,12 +29,16 @@ Task tool (general-purpose):
     ## Your Job
 
     Once you're clear on requirements:
-    1. Implement exactly what the task specifies
-    2. Write tests (following TDD if task says to)
-    3. Verify implementation works
-    4. Commit your work
-    5. Self-review (see below)
-    6. Report back
+    1. Follow TDD (superpowers:test-driven-development):
+       - Write failing test first (RED)
+       - Verify it fails
+       - Write minimal implementation (GREEN)
+       - Verify it passes
+       - Refactor if needed
+    2. Repeat for each behavior in the task
+    3. Commit your work
+    4. Self-review (see below)
+    5. Report back
 
     Work from: [directory]
 
@@ -60,9 +64,10 @@ Task tool (general-purpose):
     - Did I only build what was requested?
     - Did I follow existing patterns in the codebase?
 
-    **Testing:**
+    **Testing (TDD is mandatory):**
+    - Did I write every test BEFORE its implementation?
+    - Did I verify each test failed before writing code?
     - Do tests actually verify behavior (not just mock behavior)?
-    - Did I follow TDD if required?
     - Are tests comprehensive?
 
     If you find issues during self-review, fix them now before reporting.

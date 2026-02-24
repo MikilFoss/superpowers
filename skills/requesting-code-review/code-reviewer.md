@@ -47,6 +47,7 @@ git diff {BASE_SHA}..{HEAD_SHA}
 - Edge cases covered?
 - Integration tests where needed?
 - All tests passing?
+- TDD followed? (test commits precede implementation commits in git log)
 
 **Requirements:**
 - All plan requirements met?
@@ -127,6 +128,11 @@ git diff {BASE_SHA}..{HEAD_SHA}
    - File: search.ts:25-27
    - Issue: Invalid dates silently return no results
    - Fix: Validate ISO format, throw error with example
+
+3. **TDD violation in summarizer.ts**
+   - File: summarizer.ts, test_summarizer.ts
+   - Issue: Implementation committed before tests (git log shows implementation at abc123, tests at def456)
+   - Fix: Not retroactively fixable — flag for process improvement
 
 #### Minor
 1. **Progress indicators**

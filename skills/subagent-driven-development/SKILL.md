@@ -210,6 +210,7 @@ Done!
 - Skip review loops (reviewer found issues = implementer fixes = review again)
 - Let implementer self-review replace actual review (both are needed)
 - **Start code quality review before spec compliance is ✅** (wrong order)
+- **Accept implementation that skipped TDD** (tests exist is not TDD -- verify red-green-refactor was followed)
 - Move to next task while either review has open issues
 
 **If subagent asks questions:**
@@ -235,8 +236,8 @@ Done!
 - **superpowers:requesting-code-review** - Code review template for reviewer subagents
 - **superpowers:finishing-a-development-branch** - Complete development after all tasks
 
-**Subagents should use:**
-- **superpowers:test-driven-development** - Subagents follow TDD for each task
+**Subagents MUST use:**
+- **superpowers:test-driven-development** - REQUIRED: All implementer subagents follow TDD (red-green-refactor) for every task. Not optional. Not conditional. Include this in every implementer dispatch.
 
 **Alternative workflow:**
 - **superpowers:executing-plans** - Use for parallel session instead of same-session execution

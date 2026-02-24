@@ -46,6 +46,7 @@ Skip any step = lying, not verifying
 | Build succeeds | Build command: exit 0 | Linter passing, logs look good |
 | Bug fixed | Test original symptom: passes | Code changed, assumed fixed |
 | Regression test works | Red-green cycle verified | Test passes once |
+| TDD followed | Git log shows test commits before implementation commits | Tests exist, code works |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
 
@@ -85,6 +86,12 @@ Skip any step = lying, not verifying
 ```
 ✅ Write → Run (pass) → Revert fix → Run (MUST FAIL) → Restore → Run (pass)
 ❌ "I've written a regression test" (without red-green verification)
+```
+
+**TDD compliance:**
+```
+✅ Git log shows: test added (RED) → test fails → implementation added (GREEN) → test passes
+❌ "Tests exist and pass" (tests-after is not TDD)
 ```
 
 **Build:**

@@ -53,9 +53,16 @@ Task tool (general-purpose):
     - Did they solve the wrong problem?
     - Did they implement the right feature but wrong way?
 
+    **TDD compliance:**
+    - Do test files contain tests that correspond to implementation?
+    - Were tests committed before or alongside implementation? (check git log)
+    - Are there implementation files with no corresponding test?
+    - Tests existing is not enough — test-first ordering matters
+
     **Verify by reading code, not by trusting report.**
 
     Report:
-    - ✅ Spec compliant (if everything matches after code inspection)
+    - ✅ Spec compliant (if everything matches after code inspection, including TDD)
     - ❌ Issues found: [list specifically what's missing or extra, with file:line references]
+    - ❌ TDD violation: [implementation without test-first evidence]
 ```
