@@ -78,7 +78,15 @@ digraph process {
     "Mark task complete in TodoWrite" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Dispatch final code reviewer subagent for entire implementation" [label="no"];
-    "Dispatch final code reviewer subagent for entire implementation" -> "Use superpowers:finishing-a-development-branch";
+    "Spot-check acceptance criteria (./spot-check-prompt.md)" [shape=box];
+    "All acceptance criteria pass?" [shape=diamond];
+    "Dispatch implementer to fix failures" [shape=box];
+
+    "Dispatch final code reviewer subagent for entire implementation" -> "Spot-check acceptance criteria (./spot-check-prompt.md)";
+    "Spot-check acceptance criteria (./spot-check-prompt.md)" -> "All acceptance criteria pass?";
+    "All acceptance criteria pass?" -> "Use superpowers:finishing-a-development-branch" [label="yes"];
+    "All acceptance criteria pass?" -> "Dispatch implementer to fix failures" [label="no"];
+    "Dispatch implementer to fix failures" -> "Spot-check acceptance criteria (./spot-check-prompt.md)" [label="re-check"];
 }
 ```
 
@@ -87,6 +95,7 @@ digraph process {
 - `./implementer-prompt.md` - Dispatch implementer subagent
 - `./spec-reviewer-prompt.md` - Dispatch spec compliance reviewer subagent
 - `./code-quality-reviewer-prompt.md` - Dispatch code quality reviewer subagent
+- `./spot-check-prompt.md` - Dispatch spot-check subagent for acceptance criteria verification
 
 ## Example Workflow
 
@@ -210,6 +219,7 @@ Done!
 - Skip review loops (reviewer found issues = implementer fixes = review again)
 - Let implementer self-review replace actual review (both are needed)
 - **Start code quality review before spec compliance is ✅** (wrong order)
+- **Skip spot-checking because unit tests pass** (unit tests ≠ end-to-end verification)
 - **Accept implementation that skipped TDD** (tests exist is not TDD -- verify red-green-refactor was followed)
 - Move to next task while either review has open issues
 
@@ -227,6 +237,28 @@ Done!
 **If subagent fails task:**
 - Dispatch fix subagent with specific instructions
 - Don't try to fix manually (context pollution)
+
+## Spot-Check Phase
+
+After all tasks pass code review but BEFORE finishing the branch:
+
+1. **Extract acceptance criteria** from the plan header
+2. **Determine check type** for each criterion:
+   - UI criteria → dispatch spot-check subagent (Playwright)
+   - API criteria → dispatch spot-check subagent (curl/fetch scripts)
+3. **Dispatch spot-check subagent** using `./spot-check-prompt.md` template
+4. **Review results:**
+   - All pass → proceed to finishing
+   - Any fail → dispatch implementer subagent with failure details → re-run spot-check
+   - Max 3 fix-and-recheck cycles. If still failing, report to human partner.
+
+**The iteration loop:**
+```
+spot-check → FAIL → implementer fixes → spot-check → FAIL → implementer fixes → spot-check → PASS → finish
+                                                                                              → FAIL (3rd) → ask human
+```
+
+**Never skip spot-checking.** Unit tests passing is not sufficient — acceptance criteria verify the feature works end-to-end.
 
 ## Integration
 

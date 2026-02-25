@@ -39,6 +39,18 @@ A plan with implementation steps that lack preceding test steps is an invalid pl
 
 **Reference:** superpowers:test-driven-development defines the full methodology. Plans must encode it structurally.
 
+## Acceptance Criteria are Required
+
+Every plan MUST include an **Acceptance Criteria** section in its header. These are end-to-end checks that verify the feature works as a whole, distinct from unit tests:
+
+- **UI changes**: Observable browser behavior (element visible, navigation works, interaction produces result)
+- **API changes**: Request/response verification (endpoint returns expected status and body)
+- **Integration**: Cross-system behavior (action in UI produces expected backend state)
+
+Criteria must be specific enough for a spot-check subagent to verify autonomously using Playwright (UI) or curl (API). Vague criteria like "feature works correctly" are invalid — rewrite as observable checks.
+
+If the design doc from brainstorming includes acceptance criteria, carry them forward. If not, define them now before writing tasks.
+
 ## Plan Document Header
 
 **Every plan MUST start with this header:**
@@ -53,6 +65,11 @@ A plan with implementation steps that lack preceding test steps is an invalid pl
 **Architecture:** [2-3 sentences about approach]
 
 **Tech Stack:** [Key technologies/libraries]
+
+**Acceptance Criteria:**
+- [ ] [Concrete, observable criterion — e.g. "Login page redirects to /dashboard after successful auth"]
+- [ ] [Another criterion — e.g. "GET /api/health returns 200 with {status: 'ok'}"]
+- [ ] [Each must be verifiable by spot-check subagent via Playwright or curl]
 
 ---
 ```

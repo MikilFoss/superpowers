@@ -43,6 +43,20 @@ Based on feedback:
 - Execute next batch
 - Repeat until complete
 
+### Step 4.5: Spot-Check Acceptance Criteria
+
+After all batches complete and before finishing:
+
+1. Extract acceptance criteria from the plan header
+2. For each criterion, run the appropriate verification:
+   - **UI criteria**: Dispatch spot-check subagent with Playwright task
+   - **API criteria**: Run curl/fetch commands directly
+3. Report results to human partner
+4. If any fail: fix issues, re-run spot-check (max 3 cycles)
+5. If all pass: proceed to Step 5
+
+**Never proceed to Step 5 with failing acceptance criteria.**
+
 ### Step 5: Complete Development
 
 After all tasks complete and verified:
@@ -77,6 +91,7 @@ After all tasks complete and verified:
 - Reference skills when plan says to
 - Between batches: just report and wait
 - Stop when blocked, don't guess
+- **Spot-check acceptance criteria before finishing** - unit tests passing ≠ feature working
 - Never start implementation on main/master branch without explicit user consent
 
 ## Integration

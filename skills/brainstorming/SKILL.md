@@ -62,6 +62,10 @@ digraph brainstorming {
 - Prefer multiple choice questions when possible, but open-ended is fine too
 - Only one question per message - if a topic needs more exploration, break it into multiple questions
 - Focus on understanding: purpose, constraints, success criteria
+- **Acceptance criteria**: Ask "How will we know this is done? What should we be able to see/do/verify?" Get concrete, testable criteria. Examples:
+  - UI: "The sidebar collapses when viewport < 768px"
+  - API: "POST /api/users returns 201 with user object"
+  - Integration: "Clicking 'Submit' creates a row in the database and shows a success toast"
 
 **Exploring approaches:**
 - Propose 2-3 different approaches with trade-offs
@@ -80,6 +84,7 @@ digraph brainstorming {
 **Documentation:**
 - Write the validated design to `docs/plans/YYYY-MM-DD-<topic>-design.md`
 - Use elements-of-style:writing-clearly-and-concisely skill if available
+- Include an **Acceptance Criteria** section in the design doc with specific, testable criteria
 - Commit the design document to git
 
 **Implementation:**

@@ -35,7 +35,26 @@ Cannot proceed with merge/PR until tests pass.
 
 Stop. Don't proceed to Step 2.
 
-**If tests pass:** Continue to Step 2.
+**If tests pass:** Continue to acceptance criteria check.
+
+**After tests pass, verify acceptance criteria (if plan exists):**
+
+Check for acceptance criteria in the plan file:
+1. Run each criterion: Playwright for UI checks, curl for API checks
+2. Report results
+
+**If any acceptance criteria fail:**
+```
+Acceptance criteria failing:
+- ❌ [criterion]: [what happened vs expected]
+- ✅ [criterion]: passed
+
+Must fix before completing.
+```
+
+Stop. Don't proceed to Step 2.
+
+**If no plan file or no acceptance criteria:** Proceed to Step 2.
 
 ### Step 2: Determine Base Branch
 
